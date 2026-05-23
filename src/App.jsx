@@ -1,4 +1,4 @@
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { AuthProvider } from './contexts/AuthContext';
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -10,7 +10,7 @@ import { AppRoutes } from './routes/AppRoutes';
 export default function App() {
   return (
     <ErrorBoundary>
-      <BrowserRouter>
+      <HashRouter>
         <ThemeProvider>
           <ToastProvider>
             <AuthProvider>
@@ -21,7 +21,7 @@ export default function App() {
             </AuthProvider>
           </ToastProvider>
         </ThemeProvider>
-      </BrowserRouter>
+      </HashRouter>
     </ErrorBoundary>
   );
 }

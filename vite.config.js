@@ -1,7 +1,33 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { copyFileSync, existsSync, writeFileSync } from 'fs';
+import { resolve } from 'path';
 
-// https://vite.dev/config/
+/** GitHub repo name — must match: https://USERNAME.github.io/REPO_NAME/ */
+const REPO_NAME = 'Smart_Hospital_Management_System';
+
+export const GITHUB_BASE = `/${REPO_NAME}/`;
+
+function githubPagesPlugin() {
+  return {
+    name: 'github-pages',
+    closeBundle() {
+      const dist = resolve(__dirname, 'dist');
+      if (!existsSync(dist)) return;
+      // SPA fallback for GitHub Pages (direct /dashboard URLs)
+      copyFileSync(resolve(dist, 'index.html'), resolve(dist, '404.html'));
+      // Disable Jekyll processing on GitHub Pages
+      const nojekyll = resolve(dist, '.nojekyll');
+      if (existsSync(resolve(__dirname, 'public/.nojekyll'))) {
+        copyFileSync(resolve(__dirname, 'public/.nojekyll'), nojekyll);
+      } else {
+        writeFileSync(nojekyll, '');
+      }
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [react()],
-})
+  plugins: [react(), githubPagesPlugin()],
+  base: GITHUB_BASE,
+});

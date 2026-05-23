@@ -1,0 +1,1 @@
+function e(e,t){return t?e.find(e=>e.id===t.patientId||e.userId===t.id||e.email===t.email)??null:null}function t(e,t){return t?e.find(e=>e.id===t.doctorId||e.userId===t.id||e.email===t.email)??null:null}export{e as n,t};

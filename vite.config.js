@@ -4,7 +4,7 @@ import { copyFileSync, existsSync, writeFileSync } from 'fs';
 import { resolve } from 'path';
 
 /** GitHub repo name — must match: https://USERNAME.github.io/REPO_NAME/ */
-const REPO_NAME = 'Smart_Hospital_Management_System';
+const REPO_NAME = 'Darsi_Amaresh_Smart_Hospital_Management_System';
 
 export const GITHUB_BASE = `/${REPO_NAME}/`;
 
